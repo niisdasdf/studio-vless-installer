@@ -1,0 +1,12 @@
+{
+  "source_sha256": "4bb9c78ff7606ab63e54d362b4760cafa604893cab4a358be973a123e32b62dd",
+  "environment": "macOS host; extracted functions only; temporary directories; stat and df mocked; no full installer executed",
+  "checks": {
+    "prune_to_four_before_new_snapshot": true,
+    "unmarked_and_historical_partial_preserved": true,
+    "protected_quota_stops_without_deleting": true,
+    "low_space_stops_and_original_file_unchanged": true,
+    "current_partial_removed_only": true,
+    "complete_backup_not_removed_by_cleanup": true
+  }
+}
