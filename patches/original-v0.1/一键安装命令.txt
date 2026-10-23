@@ -1,0 +1,4 @@
+原脚本修补候选版，仅用于新 Debian/Ubuntu VPS 验收。旧部署会拒绝接管。
+这条命令替代旧 0.3 重写版命令；不得把本地 VM 验证称为真实 VPS 验收。
+
+(studio_sudo=; [ "$(id -u)" -eq 0 ] || studio_sudo=sudo; $studio_sudo bash -c 'set -e; umask 077; [ "$(uname -s)" = Linux ] && [ -t 0 ] && [ -t 1 ] || exit 1; command -v curl >/dev/null && [ -s /etc/ssl/certs/ca-certificates.crt ] || { apt-get update; DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends curl ca-certificates; }; d=$(mktemp -d /var/tmp/studio-vless-download.XXXXXXXX); trap "rm -rf -- \"$d\"" EXIT; trap "exit 130" HUP INT TERM; curl -fsSL --proto =https --proto-redir =https --connect-timeout 15 --max-time 180 --retry 2 https://raw.githubusercontent.com/niisdasdf/studio-vless-installer/ddc729e425b100e22af685c8c22a7bdd771553c8/patches/original-v0.1/installer.sh -o "$d/install.sh"; echo "4bb9c78ff7606ab63e54d362b4760cafa604893cab4a358be973a123e32b62dd  $d/install.sh" | sha256sum -c -; bash "$d/install.sh" </dev/tty')
