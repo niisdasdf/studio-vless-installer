@@ -1,37 +1,19 @@
-# Studio VLESS 安装向导
+# 安装器交付更正
 
-为新 Debian / Ubuntu VPS 准备的中文 VLESS + Reality + Vision 安装器。
+## 0.3 重写版已撤回使用推荐
 
-## 复制一条命令安装
+请先不要使用此前的 `studio-vless.sh` 安装命令。版本 0.3 没有按要求保留原脚本的操作流程和全部功能，且复核发现了下列问题：
 
-适用于 Debian 12/13、Ubuntu 22.04/24.04，systemd，amd64/arm64。请在 VPS 的 FinalShell / SSH 交互终端中运行；Mac 只用于连接 VPS。
+- 自动添加 UFW 规则时，可能把已有的来源限制扩大为所有来源可访问。
+- 单一外部 IP 查询站的失败会导致安装验收失败，不能据此认定代理本身有故障。
+- 原脚本的修改 UUID、卸载和其他协议菜单未完整保留。
 
-```bash
-(studio_sudo=; [ "$(id -u)" -eq 0 ] || studio_sudo=sudo; $studio_sudo bash -c 'set -e; umask 077; [ "$(uname -s)" = Linux ] && [ -t 0 ] && [ -t 1 ] || exit 1; command -v curl >/dev/null && [ -s /etc/ssl/certs/ca-certificates.crt ] || { apt-get update; DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends curl ca-certificates; }; d=$(mktemp -d /var/tmp/studio-vless-download.XXXXXXXX); trap "rm -rf -- \"$d\"" EXIT; trap "exit 130" HUP INT TERM; curl -fsSL --proto =https --proto-redir =https --connect-timeout 15 --max-time 180 --retry 2 https://raw.githubusercontent.com/niisdasdf/studio-vless-installer/4ba6fdf6d320078be8fd2a3bd412dccdc3294ba7/releases/v0.3/studio-vless.sh -o "$d/install.sh"; echo "9fd619fc8d8b6e82bbabcc9f7384daa1d3ad8d4937168a524f6bac60d347d6ff  $d/install.sh" | sha256sum -c -; bash "$d/install.sh" </dev/tty')
-```
+此前的隔离测试仅覆盖所列测试场景，不代表没有上述缺陷，也不代表已完成真实 VPS 和使用地网络的运营验收。
 
-命令会自动处理 root/sudo、准备缺少的 curl 和系统 CA、下载固定版本，核对 SHA-256 后打开向导。新服务器按回车选“安装”，核对自动检测的公网 IPv4；端口默认 443，握手域名默认 addons.mozilla.org，其余通常回车即可。
+历史源文件和提交保留供审计；旧的固定提交下载地址仍然可访问，不能通过修改本页撤销已复制的命令。此页移除旧安装命令，避免继续推荐部署。
 
-须在商家的云安全组中放行所选 TCP 端口。已启用的 UFW 会添加相应端口规则；其他自定义防火墙根据提示处理。
+## 修正方向
 
-## 安装完成后
+回到 dabadabader/install 的原始 Bash 脚本，在固定快照上修复明确的隐患。保留原菜单、随机空闲端口、VLESS Reality / VMess WS / Shadowsocks、分享链接与二维码、修改端口和凭据、BBR、卸载及 `menu` 管理入口。补丁和验证结果完成前，不提供新的运营可用承诺。
 
-自动生成分享链接、终端二维码和私有 PNG 图片。可把分享链接导入兼容 VLESS/Reality/Vision 的客户端。
-
-```bash
-sudo studio-vless
-```
-
-root 登录时可以直接输入 `studio-vless`。再次进入默认查看原链接和二维码，保留原身份。
-
-菜单提供状态、连接检测、备份和上一配置回滚。Reality 公私钥、UUID、short ID 自动生成；无需购买域名、申请或续签自己的域名证书。
-
-## 固定发布与检查
-
-- 版本：0.3；核心 sing-box 1.14.3，官方归档按固定 SHA-256 校验。
-- [可读 Python 源码](releases/v0.3/studio_vless.py) / [单文件安装器](releases/v0.3/studio-vless.sh)。
-- 安装器 SHA-256：`9fd619fc8d8b6e82bbabcc9f7384daa1d3ad8d4937168a524f6bac60d347d6ff`。
-- 34 项隔离测试通过；Debian 13 arm64 本地虚拟机实测了安装、低权限服务、开机自启、故障恢复、回滚及二维码解码。
-- 本机协议测试与商家公网安全组、实际使用地点的连通性和长期性能分开验收。其余受支持系统/架构尚未逐项实机覆盖。
-
-安装器只管理自身服务和配置；不接管其他脚本的 `/etc/sing-box`，不修改 SSH 或清空防火墙。服务器端域名解析使用 DoH，内核支持时设置 BBR；节点凭据仅在实际安装时生成，此仓库不存储运行中的节点凭据。
+原脚本固定基线：[`9efdde64cb1de338aa7392fa0394c37ed25876c6`](https://github.com/dabadabader/install/blob/9efdde64cb1de338aa7392fa0394c37ed25876c6/installer.sh)。
