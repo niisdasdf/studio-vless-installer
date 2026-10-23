@@ -1,0 +1,48 @@
+{
+  "source": "installer.sh",
+  "source_sha256": "4bb9c78ff7606ab63e54d362b4760cafa604893cab4a358be973a123e32b62dd",
+  "source_unchanged_during_tests": true,
+  "tests_run": 9,
+  "passed": true,
+  "failures": 0,
+  "errors": 0,
+  "cases": [
+    {
+      "name": "test_core_validation_failure_cannot_replace_active_config",
+      "passed": true
+    },
+    {
+      "name": "test_download_hash_mismatch_is_rejected_before_unpack_or_execute",
+      "passed": true
+    },
+    {
+      "name": "test_entry_exit_leaves_all_configuration_bytes_unchanged",
+      "passed": true
+    },
+    {
+      "name": "test_json_edit_failure_is_not_swallowed_and_preserves_original",
+      "passed": true
+    },
+    {
+      "name": "test_malformed_fragment_cannot_replace_active_config",
+      "passed": true
+    },
+    {
+      "name": "test_menu_eight_link_matches_real_port_sni_uuid_and_public_key",
+      "passed": true
+    },
+    {
+      "name": "test_menu_preserves_nine_original_choices",
+      "passed": true
+    },
+    {
+      "name": "test_readonly_menu_eight_never_installs_packages_or_syncs_time",
+      "passed": true
+    },
+    {
+      "name": "test_valid_extra_top_level_fields_and_inbounds_are_preserved",
+      "passed": true
+    }
+  ],
+  "method": "Only extracted Bash functions and mocked entry sequence; temporary files; real jq; mocked core validation/download/services/package commands; no complete installer execution or external network."
+}
