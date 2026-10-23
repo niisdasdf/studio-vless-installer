@@ -17,3 +17,9 @@
 回到 dabadabader/install 的原始 Bash 脚本，在固定快照上修复明确的隐患。保留原菜单、随机空闲端口、VLESS Reality / VMess WS / Shadowsocks、分享链接与二维码、修改端口和凭据、BBR、卸载及 `menu` 管理入口。补丁和验证结果完成前，不提供新的运营可用承诺。
 
 原脚本固定基线：[`9efdde64cb1de338aa7392fa0394c37ed25876c6`](https://github.com/dabadabader/install/blob/9efdde64cb1de338aa7392fa0394c37ed25876c6/installer.sh)。
+
+## 原脚本修补候选版
+
+[修补说明、逐行差异与测试记录](patches/original-v0.1/README.md)已提供。保留原菜单、随机端口与三种协议；隔离 Debian 13 arm64 验证了实际协议连接、变更/取消/恢复、重启和有上限的备份。其他发行版/架构、真实云 VPS、南昌 R3S 与长期运营尚未验收，不能把这些本地结果当作运营保证。
+
+候选安装器 SHA256：`4bb9c78ff7606ab63e54d362b4760cafa604893cab4a358be973a123e32b62dd`。此前 0.3 重写版仍维持撤回推荐状态。
