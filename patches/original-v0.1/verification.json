@@ -1,0 +1,14 @@
+{
+  "source_sha256": "4bb9c78ff7606ab63e54d362b4760cafa604893cab4a358be973a123e32b62dd",
+  "baseline_commit": "9efdde64cb1de338aa7392fa0394c37ed25876c6",
+  "diff_reconstructs_exact_candidate": true,
+  "public_fixed_commit": "ddc729e425b100e22af685c8c22a7bdd771553c8",
+  "public_download_matches_local": true,
+  "debian13_arm64_vm_checks": 30,
+  "function_isolation_tests": 9,
+  "backup_boundary_tests": 6,
+  "test_vm_stopped": true,
+  "real_vps_or_nanchang_router_tested": false,
+  "ubuntu_amd64_armv7_runtime_tested": false,
+  "existing_router_or_company_vps_modified": false
+}
