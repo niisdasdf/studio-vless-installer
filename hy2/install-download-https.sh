@@ -36,7 +36,8 @@ for studio_web in nginx caddy; do
  [[ $(systemctl show -p LoadState --value "$studio_web.service") == not-found ]] || fail 'Existing web-server unit needs review'
 done
 test ! -e /etc/nginx && test ! -e /etc/caddy || fail 'Existing web-server configuration needs review'
-! dpkg-query -W -f='${db:Status-Abbrev}\n' 'nginx*' 'caddy*' 2>/dev/null | grep -q '^ii ' || fail 'Existing web-server packages need review'
+studio_installed_web=$(dpkg-query -W -f='${db:Status-Abbrev}\n' 'nginx*' 'caddy*' 2>/dev/null || true)
+! grep -q '^ii ' <<< "$studio_installed_web" || fail 'Existing web-server packages need review'
 test -z "$(ss -H -ltn 'sport = :80')" && test -z "$(ss -H -ltn 'sport = :443')" || fail 'TCP80/443 occupied; no service stopped'
 if command -v ufw >/dev/null; then
  ! ufw status | grep -q '^Status: active$' || fail 'Active UFW requires a separately reviewed persistent TCP rule'
