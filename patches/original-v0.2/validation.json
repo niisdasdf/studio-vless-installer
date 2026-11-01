@@ -1,0 +1,64 @@
+{
+  "release": "original-v0.2",
+  "code_commit": "8557a8afa884f132426cd3d610ee68e81c7cfdc8",
+  "installer_sha256": "2d599b91e1b28b17e6ac4043028c353d552eca888b075f6af0a71c2fdec2b932",
+  "regression_test_sha256": "4dbbeb08430013fe0aa105a29f4a07173e42eab5d5b8190c4ae6f77f492ccb41",
+  "syntax": {
+    "installer": "passed",
+    "outer_download_command": "passed",
+    "inner_download_script": "passed"
+  },
+  "regression": {
+    "distinct_tests_passed": 18,
+    "runs": [
+      {
+        "tests": 18,
+        "passed": 17,
+        "skipped": 1,
+        "skip_reason": "immutable download command not yet created",
+        "seconds": 10.52
+      },
+      {
+        "tests": 1,
+        "passed": 1,
+        "skipped": 0,
+        "test": "test_download_instructions_pin_commit_and_current_digest",
+        "seconds": 0.008
+      }
+    ],
+    "environment": "macOS arm64, Bash 5.3, jq, default UTF-8 locale",
+    "service_and_package_operations": "mocked in private temporary directories",
+    "target_probe": "mocked success/failure outputs; no claim of new VPS target measurements"
+  },
+  "real_core_check": {
+    "version": "1.14.3",
+    "platform": "darwin/arm64",
+    "sha256": "28b7200074d6380006acc4f035a404c8af3dceb65dd92d7386ed92c9224e08a2",
+    "generated_server_config": "passed",
+    "ios_utls_vision_client_config": "passed"
+  },
+  "production_vps_or_router_modified": false,
+  "new_installer_linux_systemd_end_to_end_tested": false,
+  "historical_original_v0_1_files_unchanged": true,
+  "public_download": {
+    "url": "https://raw.githubusercontent.com/niisdasdf/studio-vless-installer/8557a8afa884f132426cd3d610ee68e81c7cfdc8/patches/original-v0.2/installer.sh",
+    "sha256": "2d599b91e1b28b17e6ac4043028c353d552eca888b075f6af0a71c2fdec2b932",
+    "size_bytes": 44606,
+    "local_byte_match": true,
+    "download_verified_utc": "2026-11-01T14:06:33.405867+00:00"
+  },
+  "real_loopback_integration": {
+    "ok": true,
+    "version": "sing-box version 1.14.3",
+    "target": "www.kernel.org",
+    "flow": "xtls-rprx-vision",
+    "fingerprint": "ios",
+    "loopback_only": true,
+    "http_status": 200,
+    "echo_match": true,
+    "bytes": 131,
+    "cleanup_complete": true,
+    "scope": "real client and server on macOS loopback; external REALITY handshake target; HTTP echo destination on local loopback; not Linux/systemd deployment or Shadowrocket import"
+  },
+  "loopback_test_sha256": "b33df972cba058539704999b3c22c35bc6ae0e8cb139868645102faa9ff4f040"
+}

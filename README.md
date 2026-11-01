@@ -1,4 +1,10 @@
-# 安装器交付更正
+# 洪大流量中心 加密部署命令
+
+新版 [original-v0.2](patches/original-v0.2/README.md) 保留原 Bash 安装器菜单 1–9，新增 **10：VLESS + TCP + REALITY + xtls-rprx-vision**，并替换原服务商广告。
+
+在 Debian/Ubuntu VPS 的交互式终端使用 [带固定提交与 SHA256 校验的一键命令](patches/original-v0.2/一键安装命令.txt)。新选项生成独立凭据，保留已有受管理节点，检测端口冲突，并从部署 VPS 测试候选握手域名。通用分享链接包含 Vision 流控和 iOS 指纹；导入后仍需核对客户端开关。
+
+新安装器的验证范围见 [本版测试记录](patches/original-v0.2/validation.json)。新增节点会重启安装器管理的 sing-box 服务，已有连接可能短暂中断。历史版本文件和记录保留，以下为早期交付更正。
 
 ## 0.3 重写版已撤回使用推荐
 
